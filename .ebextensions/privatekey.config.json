@@ -1,0 +1,72 @@
+{
+  "packages":{
+    "yum":{
+      "mod24_ssl" : []
+    }
+  },
+"files":
+{
+  "/etc/pki/tls/certs/server.key":{
+    "mode": "000700",
+    "owner": "root",
+    "group": "root",
+    "authentication": "S3Auth",
+    "source": "https://s3.amazonaws.com/elasticbeanstalk-us-east-1-813784960196/sjcArchiveCerts/server.key"
+  },
+  "/etc/pki/tls/certs/server.crt":{
+    "mode": "000700",
+    "owner": "root",
+    "group": "root",
+    "authentication": "S3Auth",
+    "source": "https://s3.amazonaws.com/elasticbeanstalk-us-east-1-813784960196/sjcArchiveCerts/server.crt"
+  },
+  "/etc/pki/tls/certs/server.ca.crt":{
+    "mode": "000700",
+    "owner": "root",
+    "group": "root",
+    "authentication": "S3Auth",
+    "source": "https://s3.amazonaws.com/elasticbeanstalk-us-east-1-813784960196/sjcArchiveCerts/server.ca.crt"},
+  "/etc/httpd/conf.d/ssl.conf":{
+    "mode": "000644",
+    "owner": "root",
+    "group": "root",
+    "content": "LoadModule ssl_module modules/mod_ssl.so\nListen 443\n<VirtualHost *:443>\n  <Proxy *>\n    Order deny,allow\n    Allow from all\n  </Proxy>\n\n  SSLEngine             on\n  SSLCertificateFile    \"/etc/pki/tls/certs/server.crt\"\n  SSLCertificateKeyFile \"/etc/pki/tls/certs/server.key\"\n  SSLCertificateChainFile \"/etc/pki/tls/certs/server.ca.crt\"\n  SSLCipherSuite        EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH\n  SSLProtocol           All -SSLv2 -SSLv3\n  SSLHonorCipherOrder   On\n  SSLSessionTickets     Off\n\n  Header always set Strict-Transport-Security \"max-age=63072000; includeSubdomains; preload\"\n  Header always set X-Frame-Options DENY\n  Header always set X-Content-Type-Options nosniff\n\n  ProxyPass ProxyPass / http://localhost:80/ retry=0\n  ProxyPassReverse / http://localhost:80/\n  ProxyPreserveHost on\n  RequestHeader set X-Forwarded-Proto \"https\" early\n\n  LogFormat \"%h (%{X-Forwarded-For}i) %l %u %t \\\"%r\\\" %>s %b \\\"%{Referer}i\\\" \\\"%{User-Agent}i\\\"\"\n  ErrorLog /var/log/httpd/elasticbeanstalk-error_log\n  TransferLog /var/log/httpd/elasticbeanstalk-access_log\n</VirtualHost>\n"
+    }
+  },
+  "Resources": {
+    "sslSecurityGroupIngress": {
+        "Type": "AWS::EC2::SecurityGroupIngress",
+        "Properties": {
+            "ToPort": 443,
+            "IpProtocol": "tcp",
+            "GroupId": {
+                "Fn::GetAtt": [
+                    "AWSEBSecurityGroup",
+                    "GroupId"
+                ]
+            },
+            "FromPort": 443,
+            "CidrIp": "0.0.0.0/0"
+        }
+    },
+    "AWSEBAutoScalingGroup": {
+        "Metadata": {
+            "AWS::CloudFormation::Authentication": {
+                "S3Auth": {
+                    "roleName": {
+                        "Fn::GetOptionSetting": {
+                            "Namespace": "aws:asg:launchconfiguration",
+                            "DefaultValue": "aws-elasticbeanstalk-ec2-role",
+                            "OptionName": "IamInstanceProfile"
+                        }
+                    },
+                    "buckets": [
+                        "elasticbeanstalk-us-east-1-813784960196"
+                    ],
+                    "type": "s3"
+                }
+            }
+        }
+    }
+}
+}

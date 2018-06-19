@@ -1,11 +1,12 @@
 <?php
+ini_set('display_errors', 1);
 if(isset($_REQUEST['PHPSESSID']))
 {
 session_start();
 session_unset();
 session_destroy();
 }
-include "includes//serverconfig.php";
+include "includes/serverconfig.php";
 
 $login = $_POST['Login'];
 $user = $_POST['username'];
