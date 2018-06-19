@@ -1,7 +1,5 @@
 <?php
-session_start();
-if(isset($_SESSION['id']) )
-{
+
 function catselect()
 {
 global $stackertable, $mysqlidb, $mysqliconnect, $mysqlidb, $mediacontrol, $selectedmedia, $selectedpage, $mediaimportkey, $userpermission; 
@@ -71,9 +69,6 @@ echo "<td><input type = \"text\" class=\"page\"></td></tr>";
 }
 echo "</table>";
 }
-}
-else {
-header("location:../index.php");
-}
+
 
 ?>

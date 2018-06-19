@@ -8,7 +8,7 @@ $user = $_SESSION['user'];
 $selectedmedia = isset($_REQUEST['selectedmedia'])?$_REQUEST['selectedmedia']:null;
 $selectedpage = isset($_REQUEST['selectedpage'])?$_REQUEST['selectedpage']:null;
 $userpermission = $_SESSION['group'];
-$userpassword = $_SESSION['password'];
+//$userpassword = $_SESSION['password'];
 $_SESSION['user'] = $user;
 date_default_timezone_set("America/Toronto");
 $today = date("F j, Y, g:i a"); 
@@ -18,7 +18,7 @@ $_SESSION['selectedmedia'] = $selectedmedia;
 }
 else
 {
-$selectedmedia = $_SESSION['selectedmedia'];
+$selectedmedia = isset($_SESSION['selectedmedia'])?$_SESSION['selectedmedia']:null;
 }
 if(isset($selectedpage))
 {
@@ -26,7 +26,7 @@ $_SESSION['selectedpage'] = $selectedpage;
 }
 else
 {
-$selectedpage = $_SESSION['selectedpage'];
+$selectedpage = isset($_SESSION['selectedpage'])?$_SESSION['selectedpage']:null;
 }
 $selectedmedia = trim($selectedmedia);
 $selectedpage = trim($selectedpage);
