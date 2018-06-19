@@ -1,7 +1,5 @@
 <?php
-session_start();
-if(isset($_SESSION['id']) )
-{
+
 function catcreate()
 {
 global $stackertable, $mysqlidb, $mysqliconnect, $mysqlidb, $mediacontrol, $hlconstantstable, $selectedmedia; 
@@ -54,8 +52,5 @@ echo "</tr>";
 echo "<tr><td ><button name=\"catsubmit\" value=\"createmedia\" value onClick=\"submitform('createmedia')\">Create</button></td>";
 echo "</table>";
 }
-}
-else {
-header("location:../index.php");
-}
+
 ?>
