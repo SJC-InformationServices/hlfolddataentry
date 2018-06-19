@@ -1,9 +1,15 @@
 <?php
-
-$mysqliconnect = mysqli_connect('10.2.1.141', 'kevin.noseworthy', 'Knoseworthy0808!');
-if (!$mysqliconnect) 
+$dbfile = json_decode(file_get_contents(__DIR__."/archivedb.json"),true);
+$dbcfg = $dbfile['hlfOldDev'];
+//print_r($dbcfg);
+$mysqliconnect = mysqli_connect(
+	$dbcfg['server'], 
+	$dbcfg['uid'], 
+	$dbcfg['pwd'], 
+	$dbcfg['db']);
+if (!$mysqliconnect)
 {
-	die('mysqli_login failed to connect : ' . mysqli_error());
+	die('mysqli_login failed to connect : ' . mysqli_error($mysqliconnect));
 }
 $mysqlidb = mysqli_select_db($mysqliconnect, 'hlf');
 if (!$mysqlidb)

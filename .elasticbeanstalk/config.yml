@@ -1,6 +1,6 @@
 branch-defaults:
   master:
-    environment: sjc-hlf-dataentry
+    environment: sjchlfold
 environment-defaults:
   sjcarchiveadmin:
     branch: null

@@ -1,10 +1,8 @@
 <?php
-session_start();
-if(isset($_SESSION['id']) )
-{
+
 function currentarticles()
 {
-global $stackertable, $stackermaxfield, $mysqlidb, $mysqliconnect, $mysqlidb, $mediacontrol, $selectedmedia, $selectedpage;
+global $stackertable, $stackermaxfield, $mysqlidb, $mysqliconnect,  $mediacontrol, $selectedmedia, $selectedpage;
 echo "<table class=\"createarticle\" id=\"currentarticlestable\">";
 echo "<tr>
 <td class=\"verysmall\">Page</td>
@@ -25,7 +23,7 @@ echo "<tr>
 
 $sql = "Select page, position, articlenumber, category, textcombined, price,  pricelb, pricekg, elementlayout,uos, measure, instructions, artselection, graphicslogo, deletearticle, id, markedforexport, exportedtolago, loadtolagodate, savedate, $stackermaxfield  from $stackertable WHERE media = '$selectedmedia' AND page = '$selectedpage'  AND $stackermaxfield IN (SELECT MAX($stackermaxfield) FROM $stackertable WHERE media = '$selectedmedia' AND page = '$selectedpage' GROUP BY position, articlenumber) order by position,articlenumber";
 /*$sql = "Select page, position, searsposition, articlenumber, articlename, elementname, retailprice, promoprice, retailpricerange, promopricerange, offerinfo, calcordernumber, id, markedforexport, exportedtolago, loadtolagodate, savedate from $stackertable where media = '$selectedmedia' and page = '$selectedpage'"; */
-$results = mysqli_query($mysqliconnect,$sql);
+$results = mysqli_query($mysqliconnect, $sql);
 
 if(!$results)
 {
@@ -36,7 +34,7 @@ echo "$error";
 else
 {
 $rowcount = 1;
-while($articles = mysqli_fetch_array($results, mysqli_ASSOC))
+while($articles = mysqli_fetch_array($results, MYSQLI_ASSOC))
 {
 $marked = $articles['markedforexport'];
 $exported = $articles['exportedtolago'];
@@ -79,10 +77,6 @@ $rowcount++;
 }
 }
 echo "</table>";
-}
-}
-else {
-header("location:../index.php");
 }
 
 ?>

@@ -17,7 +17,7 @@ echo "<table class=\"catselect\">";
 				<td colspan=\"1\">
 					<select name=\"mediatemplate\" id=\"mediatemplate\">
 									 <option value = \"\" selected=\"\">";
-					while($hllayouts = mysqli_fetch_array($templateresults, mysqli_ASSOC))
+					while($hllayouts = mysqli_fetch_array($templateresults, MYSQLI_ASSOC))
 					{
 					foreach ($hllayouts as  $key => $value) {
 						echo "<option value=\"$value\" >$value </option>";

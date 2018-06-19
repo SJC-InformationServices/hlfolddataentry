@@ -135,7 +135,7 @@ AND $stackermaxfield IN (SELECT MAX($stackermaxfield) FROM $stackertable WHERE m
 $existresults = mysqli_query($mysqliconnect,$existquery);
 $existnumnotexported = mysqli_num_rows($existresults);    //this is if the article exists > 0 
 
-while($lagorecord = mysqli_fetch_array($existresults, mysqli_ASSOC))
+while($lagorecord = mysqli_fetch_array($existresults, MYSQLI_ASSOC))
 {
 $currentrowid = $lagorecord['id'];
 $updatemarkedforexport = $lagorecord['markedforexport'];
@@ -157,7 +157,7 @@ $existqueryexported = "select * from $stackertable where media='$media' and page
 $existresultsexported = mysqli_query($mysqliconnect,$existqueryexported);
 $existnumexported = mysqli_num_rows($existresultsexported);       //will be greater than 0 if record exists but has been exported
 
-while($lagorecord2 = mysqli_fetch_array($existresultsexported, mysqli_ASSOC))
+while($lagorecord2 = mysqli_fetch_array($existresultsexported, MYSQLI_ASSOC))
 {
 $artname2 = trim($lagorecord2['articlename']); //now we leave the articlename as original
 if($artname2 == NULL)

@@ -113,7 +113,7 @@ if(!$r)
 {
 array_push($dataarray['ERRORS'], $q);
 }
-while($record = mysqli_fetch_array($r, mysqli_ASSOC))
+while($record = mysqli_fetch_array($r, MYSQLI_ASSOC))
 {
   $artnumber = $record['articlenumber'];
 	$artname   = $record['articlename'];

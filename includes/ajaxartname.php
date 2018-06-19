@@ -54,7 +54,7 @@ echo "$error";
 }
 else
 {	
-while($lagorecord = mysqli_fetch_array($results, mysqli_ASSOC))
+while($lagorecord = mysqli_fetch_array($results, MYSQLI_ASSOC))
 {
 	// Initialize the PHP variable:
 if($lagorecord['page'] == 0)
@@ -114,7 +114,7 @@ elseif($numrows == 0 && $numrowshllago > 0)
   }
   else
   {	
-  while($lagorecord = mysqli_fetch_array($results, mysqli_ASSOC))
+  while($lagorecord = mysqli_fetch_array($results, MYSQLI_ASSOC))
   {
   	// Initialize the PHP variable:
   if($lagorecord['page'] == 0)

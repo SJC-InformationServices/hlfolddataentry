@@ -18,11 +18,11 @@ $sql .= "savedate='$date', offerid='$offerid' where id=$id";
 
 //echo $sql;
 
-$results = mysql_query($sql);
+$results = mysqli_quer($mysqliconnect, $sql);
 if(!$results)
 {
-echo "See lago Group<br>".mysql_error($mysqlconnect);
-//echo mysql_error($mysqlconnect)."<br>";
+echo "See lago Group<br>".mysqli_error($mysqliconnect);
+//echo mysqli_error($mysqliconnect)."<br>";
 echo $sql;
 }
 }

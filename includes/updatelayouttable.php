@@ -28,7 +28,7 @@ $data = array("template"=>"$template", "pagelayout"=>"$pagelayout", "pagewidth"=
 $sql = "insert into $layouttable2 (`id`, `template`, `pagelayout`, `elementlayout`, `pagewidth`, `pageheight`, `position`, `x`, `y`, `w`, `h`) 
 values ('0', '$template', '$pagelayout', '$elementlayout', '$pagewidth', '$pageheight', '$positionnumber', '$x', '$y', '$w', '$h')";
 
-$layoutquerymy = mysql_query($sql, $mysqlconnect);
+$layoutquerymy = mysqli_query( $mysqliconnect, $sql);
 if(!$layoutquerymy)
 {
 echo "$sql<br>";
@@ -36,7 +36,7 @@ echo "$sql<br>";
 }
 //array_push($dataarray['ERRORS'], "Select * from $dbprefix.VGB VGB, $dbprefix.RAF RAF where RAFVGBKEYI = VGBKEYI and VGBBEZC = '$template' order by RAFBEZC");
 
-mysql_close($mysqlconnect);
+mysqli_close($mysqliconnect);
 
 // json_encode($dataarray);
 
