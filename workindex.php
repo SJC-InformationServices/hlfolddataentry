@@ -5,8 +5,8 @@ if(isset($_SESSION['id']) )
 {
 //$sesid = $_REQUEST['PHPSESSID'];
 $user = $_SESSION['user'];
-$selectedmedia = $_REQUEST['selectedmedia'];
-$selectedpage = $_REQUEST['selectedpage'];
+$selectedmedia = isset($_REQUEST['selectedmedia'])?$_REQUEST['selectedmedia']:null;
+$selectedpage = isset($_REQUEST['selectedpage'])?$_REQUEST['selectedpage']:null;
 $userpermission = $_SESSION['group'];
 $userpassword = $_SESSION['password'];
 $_SESSION['user'] = $user;
