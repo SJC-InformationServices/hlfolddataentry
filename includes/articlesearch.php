@@ -41,16 +41,16 @@ $query = "Select media, page, position, articlenumber, articlename, category, te
 WHERE (articlenumber LIKE $searchtext OR UPPER(textcombined) LIKE $searchtext OR UPPER(category) LIKE $searchtext OR UPPER(uos) LIKE $searchtext OR UPPER(instructions) LIKE $searchtext OR UPPER(measure) LIKE $searchtext OR UPPER(graphicslogo) LIKE $searchtext) 
  AND media <> 'HLFrawdata' order by id DESC";
 
-$results = mysql_query($query);
+$results = mysqli_query($mysqliconnect,$query);
 if(!$results)
 {
-$error = mysql_error($mysqlconnect);
+$error = mysqli_error($mysqliconnect);
 echo "Error see lago group this is fetch1<br>";
 echo "$error";
 }
 else
 {	
-while($lagorecord = mysql_fetch_array($results, MYSQL_ASSOC))
+while($lagorecord = mysqli_fetch_array($results, mysqli_ASSOC))
 {
   $id = $lagorecord['id'];
   $media = $lagorecord['media'];

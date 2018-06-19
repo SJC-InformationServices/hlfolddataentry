@@ -4,9 +4,9 @@ if(isset($_SESSION['id']) )
 {
 function catcreate()
 {
-global $stackertable, $mysqldb, $mysqlconnect, $mysqldb, $mediacontrol, $hlconstantstable, $selectedmedia; 
+global $stackertable, $mysqlidb, $mysqliconnect, $mysqlidb, $mediacontrol, $hlconstantstable, $selectedmedia; 
 $querytemplate = "SELECT hlconstantvalue FROM $hlconstantstable WHERE hlconstants = 'mediatemplate'";
-$templateresults = mysql_query($querytemplate);
+$templateresults = mysqli_query($mysqliconnect,$querytemplate);
 echo "<table class=\"catselect\">";
 	echo "<tr>
 			  <td colspan=\"1\">Create Media</td>";
@@ -17,7 +17,7 @@ echo "<table class=\"catselect\">";
 				<td colspan=\"1\">
 					<select name=\"mediatemplate\" id=\"mediatemplate\">
 									 <option value = \"\" selected=\"\">";
-					while($hllayouts = mysql_fetch_array($templateresults, MYSQL_ASSOC))
+					while($hllayouts = mysqli_fetch_array($templateresults, mysqli_ASSOC))
 					{
 					foreach ($hllayouts as  $key => $value) {
 						echo "<option value=\"$value\" >$value </option>";

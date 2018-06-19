@@ -1,14 +1,14 @@
 <?php
 
-$mysqlconnect = mysql_connect('localhost', 'hlfadmin', 'pi1g0!');
-if (!$mysqlconnect) 
+$mysqliconnect = mysqli_connect('10.2.1.141', 'kevin.noseworthy', 'Knoseworthy0808!');
+if (!$mysqliconnect) 
 {
-	die('mysql_login failed to connect : ' . mysql_error());
+	die('mysqli_login failed to connect : ' . mysqli_error());
 }
-$mysqldb = mysql_select_db('hlf', $mysqlconnect);
-if (!$mysqldb)
+$mysqlidb = mysqli_select_db($mysqliconnect, 'hlf');
+if (!$mysqlidb)
 {
-	die('mysql_db fail: ' . mysql_error());
+	die('mysqli_db fail: ' . mysqli_error());
 }
 $hlusertable = "hlusertable";
 $stackertable = "hldata";
@@ -42,12 +42,12 @@ function escape_data ($data) {
 		$data = stripslashes($data);
 	}
 	
-	// Check for mysql_real_escape_string() support.
-	if (function_exists('mysql_real_escape_string')) {
-		global $mysqlconnect; // Need the connection.
-		$data = mysql_real_escape_string (trim($data), $mysqlconnect);
+	// Check for mysqli_real_escape_string() support.
+	if (function_exists('mysqli_real_escape_string')) {
+		global $mysqliconnect; // Need the connection.
+		$data = mysqli_real_escape_string (trim($data), $mysqliconnect);
 	} else {
-		$data = mysql_escape_string (trim($data));
+		$data = mysqli_escape_string (trim($data));
 	}
 
 	// Return the escaped value.	

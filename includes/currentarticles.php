@@ -4,7 +4,7 @@ if(isset($_SESSION['id']) )
 {
 function currentarticles()
 {
-global $stackertable, $stackermaxfield, $mysqldb, $mysqlconnect, $mysqldb, $mediacontrol, $selectedmedia, $selectedpage;
+global $stackertable, $stackermaxfield, $mysqlidb, $mysqliconnect, $mysqlidb, $mediacontrol, $selectedmedia, $selectedpage;
 echo "<table class=\"createarticle\" id=\"currentarticlestable\">";
 echo "<tr>
 <td class=\"verysmall\">Page</td>
@@ -25,18 +25,18 @@ echo "<tr>
 
 $sql = "Select page, position, articlenumber, category, textcombined, price,  pricelb, pricekg, elementlayout,uos, measure, instructions, artselection, graphicslogo, deletearticle, id, markedforexport, exportedtolago, loadtolagodate, savedate, $stackermaxfield  from $stackertable WHERE media = '$selectedmedia' AND page = '$selectedpage'  AND $stackermaxfield IN (SELECT MAX($stackermaxfield) FROM $stackertable WHERE media = '$selectedmedia' AND page = '$selectedpage' GROUP BY position, articlenumber) order by position,articlenumber";
 /*$sql = "Select page, position, searsposition, articlenumber, articlename, elementname, retailprice, promoprice, retailpricerange, promopricerange, offerinfo, calcordernumber, id, markedforexport, exportedtolago, loadtolagodate, savedate from $stackertable where media = '$selectedmedia' and page = '$selectedpage'"; */
-$results = mysql_query($sql);
+$results = mysqli_query($sql);
 
 if(!$results)
 {
-$error = mysql_error($mysqlconnect);
+$error = mysqli_error($mysqliconnect);
 echo "Error see lago group<br>";
 echo "$error";
 }
 else
 {
 $rowcount = 1;
-while($articles = mysql_fetch_array($results, MYSQL_ASSOC))
+while($articles = mysqli_fetch_array($results, mysqli_ASSOC))
 {
 $marked = $articles['markedforexport'];
 $exported = $articles['exportedtolago'];

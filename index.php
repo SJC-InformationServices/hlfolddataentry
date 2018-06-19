@@ -8,17 +8,17 @@ session_destroy();
 }
 include "includes/serverconfig.php";
 
-$login = $_POST['Login'];
-$user = $_POST['username'];
-$password = $_POST['password'];
 $actionlocation = $_SERVER['PHP_SELF'];
 
-if(isset($login))
+if(isset($_POST['Login']))
 {
+  $login = $_POST['Login'];
+$user = $_POST['username'];
+$password = $_POST['password'];
 $userverify = "SELECT `group`, `id` from $hlusertable where (`username`='$user' or  `username`=UPPER('$user')) and (`password`=SHA('$password')) ";
-$userresults = mysql_query ($userverify) or die('mysql log fail: ' . mysql_error());
-$userpermission = mysql_fetch_row($userresults);
-if(mysql_num_rows($userresults) > 0)
+$userresults = mysqli_query ($mysqliconnect,$userverify) or die('mysqli log fail: ' . mysqli_error($mysqliconnect));
+$userpermission = mysqli_fetch_row($userresults);
+if(mysqli_num_rows($userresults) > 0)
 {
 session_set_cookie_params(360000, '/','');
 session_start();

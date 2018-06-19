@@ -37,18 +37,18 @@ $artselection = escape_data($_REQUEST['artselection']);
 //$artselection = ($_REQUEST['artselection']);
 $deletearticle = $_REQUEST['deletearticle'];
 
-$maxid2 = mysql_query("SELECT MAX(`id`) AS ID FROM $stackertable ");
-$maxidarray2 = mysql_fetch_array($maxid2, MYSQL_BOTH);
+$maxid2 = mysqli_query($mysqliconnect,"SELECT MAX(`id`) AS ID FROM $stackertable ");
+$maxidarray2 = mysqli_fetch_array($maxid2, mysqli_BOTH);
 $maxidint2 = $maxidarray2['ID'] + 1;
 $searsdatamicroseconds2 = $date.$maxidint2;
 
 //* ***** fetching the mediaimportkey for the media from hlmediacontrol
 $query = "SELECT mediaimportkey, mediatemplate FROM $mediacontrol WHERE media = '$media'";
-$results = mysql_query($query);
-$row = mysql_fetch_array($results, MYSQL_NUM);
+$results = mysqli_query($mysqliconnect,$query);
+$row = mysqli_fetch_array($results, mysqli_NUM);
 if (!$results)
 { 
- $error = mysql_error($mysqlconnect);
+ $error = mysqli_error($mysqliconnect);
   echo "Failed to fetch mediaimportkey from hlmediacontrol! <br>$error";
 }
 else
@@ -132,10 +132,10 @@ $flasharticle = 1;
 //AND $stackermaxfield IN (SELECT MAX($stackermaxfield) FROM $stackertable WHERE media = '$media' AND page = '$page' AND articlenumber = '$articlenumber' AND position = '$position' GROUP BY articlenumber)";
 $existquery = "select * from $stackertable where media='$media' and page='$page' and position='$position' and articlenumber = '$articlenumber' 
 AND $stackermaxfield IN (SELECT MAX($stackermaxfield) FROM $stackertable WHERE media = '$media' AND page = '$page' AND articlenumber = '$articlenumber' AND position = '$position' GROUP BY articlenumber)";  //removed exportedtolago=0 requirement
-$existresults = mysql_query($existquery);
-$existnumnotexported = mysql_num_rows($existresults);    //this is if the article exists > 0 
+$existresults = mysqli_query($mysqliconnect,$existquery);
+$existnumnotexported = mysqli_num_rows($existresults);    //this is if the article exists > 0 
 
-while($lagorecord = mysql_fetch_array($existresults, MYSQL_ASSOC))
+while($lagorecord = mysqli_fetch_array($existresults, mysqli_ASSOC))
 {
 $currentrowid = $lagorecord['id'];
 $updatemarkedforexport = $lagorecord['markedforexport'];
@@ -154,10 +154,10 @@ $articlename = escape_data($artname);
 // test if the article exists
 //$existqueryexported = "select * from $stackertable where media='$media' and page='$page' and position='$position' and articlenumber = '$articlenumber' and exportedtolago = 1";
 $existqueryexported = "select * from $stackertable where media='$media' and page='$page' and position='$position' and articlenumber = '$articlenumber' ";   // test if the article exists
-$existresultsexported = mysql_query($existqueryexported);
-$existnumexported = mysql_num_rows($existresultsexported);       //will be greater than 0 if record exists but has been exported
+$existresultsexported = mysqli_query($mysqliconnect,$existqueryexported);
+$existnumexported = mysqli_num_rows($existresultsexported);       //will be greater than 0 if record exists but has been exported
 
-while($lagorecord2 = mysql_fetch_array($existresultsexported, MYSQL_ASSOC))
+while($lagorecord2 = mysqli_fetch_array($existresultsexported, mysqli_ASSOC))
 {
 $artname2 = trim($lagorecord2['articlename']); //now we leave the articlename as original
 if($artname2 == NULL)
@@ -199,10 +199,10 @@ VALUES
 ('$media', '$mediaimportkey', '$page', '$articlenumber', '$category',  '$position', '$textlines','$textlines', '$price', '$pricelb', '$pricekg', '$mediatemplate', '$elementlayout', '$uos', '$measure', '$instructions', '$artselection', '$graphicslogo' , '$offerid','$user', '$date2', 0, 0, '$searsdatamicroseconds2',  '$articlename', '$elementdisplayname', '$flasharticle', '$deletearticle')";
 }
 //run the insert or update query
- $insertupdateresults = mysql_query($insertupdatequery);
+ $insertupdateresults = mysqli_query($mysqliconnect,$insertupdatequery);
  if(!$insertupdateresults)
  {
- $error = mysql_error($mysqlconnect);
+ $error = mysqli_error($mysqliconnect);
  echo "See Lago Group for help! <br>$error $insertupdatequery ";
  }
  else

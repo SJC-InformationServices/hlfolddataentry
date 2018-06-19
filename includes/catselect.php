@@ -4,7 +4,7 @@ if(isset($_SESSION['id']) )
 {
 function catselect()
 {
-global $stackertable, $mysqldb, $mysqlconnect, $mysqldb, $mediacontrol, $selectedmedia, $selectedpage, $mediaimportkey, $userpermission; 
+global $stackertable, $mysqlidb, $mysqliconnect, $mysqlidb, $mediacontrol, $selectedmedia, $selectedpage, $mediaimportkey, $userpermission; 
 echo "<table class=\"catselect\">";
 echo "<tr><td colspan=\"2\">Media Select</td></tr><tr><td>Media</td><td>Page</td></tr>";
 echo "<tr><td>";
@@ -23,16 +23,16 @@ else
 $sql = "Select Distinct(media), mediaimportkey, activemedia, id from $mediacontrol WHERE activemedia = 1 order by `id` DESC";
 }
 
-$query = mysql_query($sql);
+$query = mysqli_query($mysqliconnect,$sql);
 if(!$query)
 {
-$error = mysql_error($mysqlconnect);
+$error = mysqli_error($mysqliconnect);
 echo "<option value=\"Failed Server\">$error</option>";
 }
 else
 {
 echo "<option value=\"\"></option>";
-while($media = mysql_fetch_array($query))
+while($media = mysqli_fetch_array($query))
 {
 echo "<option value=\"".$media['media']."\">".$media['media']."</option>";
 
@@ -50,7 +50,7 @@ if(isset($selectedpage))
 echo "<option VALUE=\"$selectedpage\">$selectedpage</option>";
 }
 $pagesql = "Select Distinct(page) from $stackertable where media='$selectedmedia' order by page";
-$pagequery = mysql_query($pagesql);
+$pagequery = mysqli_query($mysqliconnect, $pagesql);
 if(!$pagequery)
 {
 echo "<option value=\"\">Error-See Lago Group</option>";
@@ -58,7 +58,7 @@ echo "<option value=\"\">Error-See Lago Group</option>";
 else
 {
 echo "<option value=\"\"></option>";
-while($pages = mysql_fetch_array($pagequery))
+while($pages = mysqli_fetch_array($pagequery))
 {
 echo "<option value=\"".$pages['page']."\">".$pages['page']."</option>";
 }

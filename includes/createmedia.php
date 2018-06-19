@@ -188,10 +188,10 @@ $insertquery = "insert into $mediacontrol (`media`, `mediaimportkey`, `mediatemp
 //switch to this insert query after changeover to ez catalogue
 
 //$insertquery = "insert into $mediacontrol (`media`, `mediaimportkey`, `mediatemplate`,`createdate`, `createdby`) VALUES ('$newmedia', '$mediaimportkey', '$template','$datestamp', '$user')";
-$results = mysql_query($insertquery);
+$results = mysqli_query($mysqliconnect,$insertquery);
 if(!$results)
 {
-$error = mysql_error($mysqlconnect);
+$error = mysqli_error($mysqliconnect);
 echo "$error\nReport to Lago Group";
 }
 else

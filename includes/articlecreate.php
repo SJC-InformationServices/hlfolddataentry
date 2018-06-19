@@ -4,7 +4,7 @@ if(isset($_SESSION['id']) )
 {
 function articlecreate()
 {
-global $stackertable, $mysqldb, $mysqlconnect, $mysqldb, $mediacontrol, $selectedmedia, $selectedpage, $hlcategorytable, $hlconstantstable; 
+global $stackertable, $mysqlidb, $mysqliconnect, $mysqlidb, $mediacontrol, $selectedmedia, $selectedpage, $hlcategorytable, $hlconstantstable; 
 echo "<table class=\"createarticle\">";
 echo "<tr>
 <td class=\"verysmall\">Page</td>
@@ -23,16 +23,16 @@ echo "<tr>
 
 //make the hlcategories array
 $query = "SELECT categoryname FROM $hlcategorytable order by categoryname";
-$result = mysql_query($query);
+$result = mysqli_query($mysqliconnect,$query);
 $querylayout = "SELECT hlconstantvalue FROM $hlconstantstable WHERE hlconstants = 'elementlayout'";
-$layoutresults = mysql_query($querylayout);
+$layoutresults = mysqli_query($mysqliconnect,$querylayout);
 echo "<tr>
 <td><input  name=\"page\" value=\"$selectedpage\"></td>
 <td><input  name=\"position\" onChange=\"positionnan(this.value)\"></td>
 <td><input  name=\"articlenumber\" onblur=\"artname(this.value,document.createarticles.position.value)\"></td>";
 //make the category pulldown
 echo "<td><select name=\"category\"> <option value = \"\" selected=\"\">";
-while($hlcategories = mysql_fetch_array($result, MYSQL_ASSOC))
+while($hlcategories = mysqli_fetch_array($result, mysqli_ASSOC))
 {
 foreach ($hlcategories as  $key => $value) {
 	echo "<option value=\"$value\" >$value </option>\n";
@@ -45,7 +45,7 @@ echo "<td><textarea name=\"textlines\" rows=\"2\" cols=\"60\"></textarea></td>
 <td><input  name=\"pricelb\" id=\"createarticlespricelb\" onkeyup=\"checkpricelb(this.id)\" value=\"0.00\"></td>
 <td><input  name=\"pricekg\" id=\"createarticlespricekg\" onChange=\"checkprice(this.id)\" disabled value=\"0.00\"></td>";
 echo "<td><select name=\"elementlayout\"> <option value = \"\" selected=\"\">";
-while($hllayouts = mysql_fetch_array($layoutresults, MYSQL_ASSOC))
+while($hllayouts = mysqli_fetch_array($layoutresults, mysqli_ASSOC))
 {
 foreach ($hllayouts as  $key => $value) {
 	echo "<option value=\"$value\" >$value </option>\n";
@@ -53,7 +53,7 @@ foreach ($hllayouts as  $key => $value) {
 }
 echo "</select>";
 echo "</td>";
-$logoarray = array('', 'AAA','21 Day/AAA', 'Country Kitchen', 'Floral', 'Ontario', 'Organic', 'Ontario/Organic', 'First of the Season', 'Best for the bbq','Driscoll’s','Calvo', 'Delmonte','Dole','New');
+$logoarray = array('', 'AAA','21 Day/AAA', 'Country Kitchen', 'Floral', 'Ontario', 'Organic', 'Ontario/Organic', 'First of the Season', 'Best for the bbq','Driscollï¿½s','Calvo', 'Delmonte','Dole','New');
 echo "<td><input  name=\"unitofsale\"></td>
 <td><input  name=\"measure\"></td>
 <td><input  name=\"instructions\" maxlength = \"200\"></td>
@@ -66,9 +66,9 @@ echo "</td><tr>
 <td ></td><td></td><td></td><td></td><td><input  name=\"articlename\" id=\"articlename\"  disabled value=\"\" </td><td></td><td></td><td></td><td>Delete</td><td><input  name=\"deletearticle\" type=\"checkbox\" onclick=submitarticles()></td><td>select art</td>";
 
 $query = "SELECT hlconstantvalue FROM $hlconstantstable WHERE hlconstants = 'artselect'";
-$result = mysql_query($query);
+$result = mysqli_query($mysqliconnect,$query);
 echo "<td><select name=\"artselection\"> <option value = \"\" selected=\"\">";
-while($hlartselect = mysql_fetch_array($result, MYSQL_ASSOC))
+while($hlartselect = mysqli_fetch_array($result, mysqli_ASSOC))
 {
 foreach ($hlartselect as  $key => $value) {
 	echo "<option value=\"$value\" >$value </option>\n";
