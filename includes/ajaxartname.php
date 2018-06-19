@@ -32,29 +32,29 @@ if (isset($_REQUEST['articlenumber'])) {
 
 $checkexistsquery = "SELECT * FROM $stackertable WHERE articlenumber = '$artnum' AND media = '$media' 
 and page = '$page' and position = '$position'";
-$resultscheck = mysql_query($checkexistsquery);
-$numrows = mysql_num_rows($resultscheck);
+$resultscheck = mysqli_query($mysqliconnect, $checkexistsquery);
+$numrows = mysqli_num_rows($resultscheck);
 
 $checkhllagotablequery = "SELECT * FROM $hllagotable WHERE articlenumber = '$artnum'";
-$resultscheckhllago = mysql_query($checkhllagotablequery);
-$numrowshllago = mysql_num_rows($resultscheckhllago);
+$resultscheckhllago = mysqli_query($mysqliconnect, $checkhllagotablequery);
+$numrowshllago = mysqli_num_rows($resultscheckhllago);
 
 if($numrows > 0 )
 {
 
 	$q = "SELECT page, articlenumber, position, textcombined, $stackermaxfield, price, pricelb, pricekg, elementlayout, elementname, uos, measure, instructions, artselection, graphicslogo, media, category, deletearticle, articlename FROM $stackertable WHERE articlenumber ='$artnum' AND media = '$media' and page = '$page' and position = '$position' AND $stackermaxfield IN  (SELECT MAX($stackermaxfield) FROM $stackertable WHERE  articlenumber ='$artnum' AND media = '$media'
 and page = '$page' and position = '$position')";
-	$results = mysql_query($q);	
+	$results = mysqli_query($mysqliconnect, $q);	
 
 if(!$results)
 {
-$error = mysql_error($mysqlconnect);
+$error = mysqli_error($mysqliconnect);
 echo "Error see lago group this is fetch1<br>";
 echo "$error";
 }
 else
 {	
-while($lagorecord = mysql_fetch_array($results, MYSQL_ASSOC))
+while($lagorecord = mysqli_fetch_array($results, mysqli_ASSOC))
 {
 	// Initialize the PHP variable:
 if($lagorecord['page'] == 0)
@@ -104,17 +104,17 @@ elseif($numrows == 0 && $numrowshllago > 0)
 {
 // echo "in the hllagodata fetch";
 	$q = "SELECT page, articlenumber, position, textcombined, $lagostackermaxfield, price, pricelb, pricekg, elementlayout, elementname, uos, measure, instructions, artselection, graphicslogo, media, category, deletearticle, articlename FROM $hllagotable WHERE articlenumber ='$artnum' AND $lagostackermaxfield IN  (SELECT MAX($lagostackermaxfield) FROM $hllagotable WHERE  articlenumber ='$artnum') AND media <> 'HLFrawdata'";
-	$results = mysql_query($q);	
+	$results = mysqli_query($mysqliconnect, $q);	
 
   if(!$results)
   {
-  $error = mysql_error($mysqlconnect);
+  $error = mysqli_error($mysqliconnect);
   echo "Error see lago group this is fetch2<br>";
   echo "$error";
   }
   else
   {	
-  while($lagorecord = mysql_fetch_array($results, MYSQL_ASSOC))
+  while($lagorecord = mysqli_fetch_array($results, mysqli_ASSOC))
   {
   	// Initialize the PHP variable:
   if($lagorecord['page'] == 0)

@@ -50,7 +50,7 @@ echo "$error";
 }
 else
 {	
-while($lagorecord = mysqli_fetch_array($results, mysqli_ASSOC))
+while($lagorecord = mysqli_fetch_array($results, MYSQLI_ASSOC))
 {
   $id = $lagorecord['id'];
   $media = $lagorecord['media'];

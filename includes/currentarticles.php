@@ -25,7 +25,7 @@ echo "<tr>
 
 $sql = "Select page, position, articlenumber, category, textcombined, price,  pricelb, pricekg, elementlayout,uos, measure, instructions, artselection, graphicslogo, deletearticle, id, markedforexport, exportedtolago, loadtolagodate, savedate, $stackermaxfield  from $stackertable WHERE media = '$selectedmedia' AND page = '$selectedpage'  AND $stackermaxfield IN (SELECT MAX($stackermaxfield) FROM $stackertable WHERE media = '$selectedmedia' AND page = '$selectedpage' GROUP BY position, articlenumber) order by position,articlenumber";
 /*$sql = "Select page, position, searsposition, articlenumber, articlename, elementname, retailprice, promoprice, retailpricerange, promopricerange, offerinfo, calcordernumber, id, markedforexport, exportedtolago, loadtolagodate, savedate from $stackertable where media = '$selectedmedia' and page = '$selectedpage'"; */
-$results = mysqli_query($sql);
+$results = mysqli_query($mysqliconnect,$sql);
 
 if(!$results)
 {

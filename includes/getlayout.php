@@ -10,14 +10,14 @@ $media = $_REQUEST['selectedmedia'];
 $page = $_REQUEST['selectedpage'];
 
 $templatesql = "select * from $mediacontrol where media = '$media'";
-$templatequery = mysql_query($templatesql);
+$templatequery = mysqli_query($mysqliconnect,$templatesql);
 if(!$templatequery)
 {
 array_push($dataarray['ERRORS'], 'Failed TemplateQuery');
 }
 else
 {
-$templatearray = mysql_fetch_array($templatequery);
+$templatearray = mysqli_fetch_array($templatequery);
 $template = $templatearray['mediatemplate'];
 }
 
@@ -76,12 +76,12 @@ $layout = 'frontcover';
 
 $layoutsql = "select * from $layouttable where template = '$template' and pagelayout = '$layout' order by position";
 
-$layoutquery = mysql_query($layoutsql);
+$layoutquery = mysqli_query($mysqliconnect,$layoutsql);
 if(!$layoutquery)
 {
 array_push($dataarray['ERRORS'], $layoutsql);
 }
-while($layoutdata = mysql_fetch_array($layoutquery))
+while($layoutdata = mysqli_fetch_array($layoutquery))
 {
 $templatename = $layoutdata['template'];
 $pagelayoutname = $layoutdata['pagelayout'];
@@ -108,12 +108,12 @@ $data['ART'] = array();
 $query = "SELECT *, $stackermaxfield FROM $stackertable WHERE media = '$media' and page = '$page' and position = '$positionnumber' and deletearticle = 0  and $stackermaxfield IN  (SELECT MAX($stackermaxfield) FROM $stackertable WHERE media = '$media' and page = '$page' and position = '$positionnumber'   GROUP BY articlenumber)ORDER BY position";
 
 //$q = "SELECT * FROM $stackertable WHERE media = '$media' and page = '$page'";
-$r = mysql_query($query);
+$r = mysqli_query($mysqliconnect,$query);
 if(!$r)
 {
 array_push($dataarray['ERRORS'], $q);
 }
-while($record = mysql_fetch_array($r, MYSQL_ASSOC))
+while($record = mysqli_fetch_array($r, mysqli_ASSOC))
 {
   $artnumber = $record['articlenumber'];
 	$artname   = $record['articlename'];
@@ -197,7 +197,7 @@ array_push($dataarray['DATA']['LAYOUT'], $data);
 
 }
 
-//mysql_close($mysqlconnect);
+//mysqli_close($mysqliconnect);
 
 echo json_encode($dataarray);
 
