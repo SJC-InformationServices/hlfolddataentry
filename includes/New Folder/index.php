@@ -12,15 +12,15 @@
 <form action = "index.php" id=\"createarticles\" method = 'post'>
 
 <?php 
-$mysqlconnect = mysql_connect('localhost', 'lago', 'como888');
-if (!$mysqlconnect) 
+$mysqliconnect = mysqli_connect('localhost', 'lago', 'como888');
+if (!$mysqliconnect) 
 {
-	die('mysql_login failed to connect : ' . mysql_error());
+	die('mysqli_login failed to connect : ' . mysqli_error());
 }
-$mysqldb = mysql_select_db('retailtesting', $mysqlconnect);
-if (!$mysqldb)
+$mysqlidb = mysqli_select_db('retailtesting', $mysqliconnect);
+if (!$mysqlidb)
 {
-	die('mysql_db fail: ' . mysql_error());
+	die('mysqli_db fail: ' . mysqli_error());
 }
 
 $stackertable = "hldata";
@@ -30,7 +30,7 @@ $hlcategorytable = "hlcategory";
 echo "tables are connected!";
 
 $query = "SELECT categoryname FROM $hlcategorytable ORDER BY categoryname";
-$results = mysql_query($query);
+$results = mysqli_query($mysqliconnect, $query);
 
 echo "<select name = "categoryfield">";
 foreach($results as $value)
