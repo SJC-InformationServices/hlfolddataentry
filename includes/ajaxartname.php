@@ -8,27 +8,31 @@ include 'serverconfig.php';
 
 
 if (isset($_REQUEST['articlenumber'])) {
-  $artnum = $_GET['articlenumber']; 
-  $media = $_GET['media']; 
-  $page = $_GET['page']; 
-  $position = $_GET['position'];
-  
+  $artnum = isset($_GET['articlenumber'])?$_GET['articlenumber'] : null; 
+  //$media = $_GET['media']; 
+  //$page = $_GET['page']; 
+  //$position = $_GET['position'];
+  foreach($_GET as $k => $v){
+    $$k = $v;
+  }
   //adding this for change from offer to article no in final dataarray.
 //  $artnamefromscreen   = $_GET['textlines'];
-  $artname = $isset($_GET['articlename'])?$_GET['articlename']:null;
-	$price     = isset($_GET['price'])?$_GET['price']:null;
-  $pricelb   = isset($_GET['pricelb'])?$_GET['pricelb']:null;
-  $pricekg   = isset($_GET['pricekg'])?$_GET['pricekg']:null;
-  $elementlayoutget   = isset($_GET['elementlayout'])?$_GET['elementlayoutget']:null;
+       $artname = isset($_GET['articlename']) ? $_GET['articlename']:null;
+      /* 
+        $price     = isset($_GET['price'])  ?  $_GET['price'] : null;
+        $pricelb   = isset($_GET['pricelb']) ? $_GET['pricelb']:null;
+        $pricekg   = isset($_GET['pricekg']) ? $_GET['pricekg']:null;
+  $elementlayoutget   = isset($_GET['elementlayout']) ? $_GET['elementlayoutget'] : null;
   $elementlayout = trim($elementlayoutget);
-	$textlines = isset($_GET['textlines'])?$_GET['textlines']:null;
- 	$unitofsale      = isset($_GET['unitofsale'])?$_GET['unitofsale']:null;
-	$measure      = isset($_GET['measure'])?$_GET['measure']:null;
- 	$instructions      = isset($_GET['instructions'])?$_GET['instructions']:null;
-	$graphicslogo      = isset($_GET['logo'])?$_GET['logo']:null;
-	$category      = isset($_GET['category'])?$_GET['category']:null;
-	$artselection = isset($_GET['artselection'])?$_GET['artselection']:null;
-	$deletearticle = isset($_GET['deletearticle'])?$_GET['deletearchivel']:null;
+
+	$textlines = isset($_GET['textlines']) ? $_GET['textlines']:null;
+ 	$unitofsale      = isset($_GET['unitofsale']) ? $_GET['unitofsale']:null;
+	$measure      = isset($_GET['measure']) ? $_GET['measure']:null;
+ 	$instructions      = isset($_GET['instructions']) ? $_GET['instructions']:null;
+	$graphicslogo      = isset($_GET['logo']) ? $_GET['logo']:null;
+	$category      = isset($_GET['category']) ? $_GET['category']:null;
+	$artselection = isset($_GET['artselection']) ? $_GET['artselection']:null;
+	$deletearticle = isset($_GET['deletearticle']) ? $_GET['deletearchivel']:null;*/
 
 $checkexistsquery = "SELECT * FROM $stackertable WHERE articlenumber = '$artnum' AND media = '$media' 
 and page = '$page' and position = '$position'";
