@@ -42,7 +42,7 @@ $layouttable2 = "hltemplates2";
 
 // Create a function for escaping the data.
 function escape_data ($data) {
-	
+	global $mysqliconnect;
 	// Address Magic Quotes.
 	if (ini_get('magic_quotes_gpc')) {
 		$data = stripslashes($data);
@@ -51,9 +51,9 @@ function escape_data ($data) {
 	// Check for mysqli_real_escape_string() support.
 	if (function_exists('mysqli_real_escape_string')) {
 		global $mysqliconnect; // Need the connection.
-		$data = mysqli_real_escape_string (trim($data), $mysqliconnect);
+		$data = mysqli_real_escape_string ($mysqliconnect,trim($data));
 	} else {
-		$data = mysqli_escape_string (trim($data));
+		$data = mysqli_real_escape_string ($mysqliconnect, trim($data));
 	}
 
 	// Return the escaped value.	

@@ -6,7 +6,7 @@ $template = $_REQUEST['mediatemplate'];
 $yearselected = $_REQUEST['seas'];
 $numberofpages = $_REQUEST['numpage'];
 
-$user = $_SESSION['username'];
+$user = isset($_SESSION['username'])?$_SESSION['username']:'ebadmin';
 //echo "$newmedia";
 $datestamp = DATE('Y-m-d G:i:s');
 if(isset($newmedia) && $newmedia != "" && isset($template) && $template != ""  && isset($yearselected) && $yearselected != "" && isset($numberofpages) && $numberofpages != "")
