@@ -22,10 +22,10 @@ $layout = "Newspaper_Jewish";
 $pagefrom  = 1;
 $pageto = 1;
 $pagelayout = "ANY=Newspaper_Jewish";
-$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
+/*$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
 $string = $season."\t".$newmedia."\t".$mediaimportkey."\t".$variant."\t".$template."\t".$pagefrom."\t".$pageto."\t".$pagelayout."\t".$workplan."\r\n";
 fwrite($file, $string);
-fclose($file);
+fclose($file);*/
 }
 elseif(stristr($template, "Newspaper"))
 {
@@ -34,10 +34,10 @@ $layout = "Newspaper_Russian";
 $pagefrom  = 1;
 $pageto = 1;
 $pagelayout = "ANY=Newspaper_Russian";
-$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
+/*$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
 $string = $season."\t".$newmedia."\t".$mediaimportkey."\t".$variant."\t".$template."\t".$pagefrom."\t".$pageto."\t".$pagelayout."\t".$workplan."\r\n";
 fwrite($file, $string);
-fclose($file);
+fclose($file);*/
 
 }
 elseif($template == 'Highland') //8 pg book
@@ -64,13 +64,13 @@ $pagefrom  = 8;
 $pageto = 8;
 $pagelayout = "ANY=8pg_back";
 $string5 = $season."\t".$newmedia."\t".$mediaimportkey."\t".$variant."\t".$template."\t".$pagefrom."\t".$pageto."\t".$pagelayout."\t".$workplan."\r\n";
-$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
+/*$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
 fwrite($file, $string1);
 fwrite($file, $string2);
 fwrite($file, $string3);
 fwrite($file, $string4);
 fwrite($file, $string5);
-fclose($file);
+fclose($file);*/
 }
 elseif($template == 'Highland_4pg') // 4 pg book
 {
@@ -88,11 +88,11 @@ $pagefrom  = 4;
 $pageto = 4;
 $pagelayout = "ANY=4pg_back";
 $string3 = $season."\t".$newmedia."\t".$mediaimportkey."\t".$variant."\t".$template."\t".$pagefrom."\t".$pageto."\t".$pagelayout."\t".$workplan."\r\n";
-$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
+/*$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
 fwrite($file, $string1);
 fwrite($file, $string2);
 fwrite($file, $string3);
-fclose($file);
+fclose($file);*/
 }
 
 elseif($template == 'Highland 9x11.125') //*******************20110202 new 8 page format for Highland*********************
@@ -116,21 +116,21 @@ $pagefrom  = 6;
 $pageto = 7;
 $pagelayout = "ANY=left_page_inside\ANY=right_page_inside";
 $string4 = $season."\t".$newmedia."\t".$mediaimportkey."\t".$variant."\t".$template."\t".$pagefrom."\t".$pageto."\t".$pagelayout."\t".$workplan."\r\n";
-$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
+/*$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
 fwrite($file, $string1);
 fwrite($file, $string2);
 fwrite($file, $string3);
 fwrite($file, $string4);
-fclose($file);
+fclose($file);*/
 if($numberofpages == '8')
 {
 $pagefrom  = 8;
 $pageto = 8;
 $pagelayout = "ANY=back_cover";
 $string5 = $season."\t".$newmedia."\t".$mediaimportkey."\t".$variant."\t".$template."\t".$pagefrom."\t".$pageto."\t".$pagelayout."\t".$workplan."\r\n";
-$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
+/*$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
 fwrite($file, $string5);
-fclose($file);
+fclose($file);*/
 }
 elseif($numberofpages == '12')
 {
@@ -146,11 +146,11 @@ $pagefrom  = 12;
 $pageto = 12;
 $pagelayout = "ANY=back_cover";
 $string7 = $season."\t".$newmedia."\t".$mediaimportkey."\t".$variant."\t".$template."\t".$pagefrom."\t".$pageto."\t".$pagelayout."\t".$workplan."\r\n";
-$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
+/*$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
 fwrite($file, $string5);
 fwrite($file, $string6);
 fwrite($file, $string7);
-fclose($file);
+fclose($file);*/
 }
 else
 //else($numberofpages = 16)
@@ -175,13 +175,13 @@ $pagefrom  = 16;
 $pageto = 16;
 $pagelayout = "ANY=back_cover";
 $string9 = $season."\t".$newmedia."\t".$mediaimportkey."\t".$variant."\t".$template."\t".$pagefrom."\t".$pageto."\t".$pagelayout."\t".$workplan."\r\n";
-$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
+/*$file = fopen("../$exportdir/HLF_makecatalogue.imp", 'ab');
 fwrite($file, $string5);
 fwrite($file, $string6);
 fwrite($file, $string7);
 fwrite($file, $string8);
 fwrite($file, $string9);
-fclose($file);
+fclose($file);*/
 }
 }
 $insertquery = "insert into $mediacontrol (`media`, `mediaimportkey`, `mediatemplate`,`createdate`, `createdby`, `season`) VALUES ('$newmedia', '$mediaimportkey', '$template','$datestamp', '$user', '$yearselected')";
