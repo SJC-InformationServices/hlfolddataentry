@@ -32,22 +32,22 @@ $selectedmedia = trim($selectedmedia);
 $selectedpage = trim($selectedpage);
 include "includes//serverconfig.php";
 ?>
-<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><title>HLF Data Entry</title>
-<meta http-equiv=\"Content-Type\" content=\"text/html; charset=\"UTF-8\">
-<meta http-equiv=\"refresh\" content=\"36000;url=index.php\">
-<style type=\"text/css\" media=\"all\">@import \"css/default.css\";</style>
-<style type=\"text/css\" media=\"all\">@import \"css/floating-window.css\";</style>
-<style type=\"text/css\" media=\"all\">@import \"css/layout.css\";</style>
+<meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
+<meta http-equiv="refresh" content="36000;url=index.php">
+<style type="text/css" media="all">@import "css/default.css";</style>
+<style type="text/css" media="all">@import "css/floating-window.css";</style>
+<style type="text/css" media="all">@import "css/layout.css";</style>
 <script
   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
   integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
   crossorigin="anonymous"></script>
-<script type=\"text/javascript\" src=\"js/ajax.js\"></script>
-<script type=\"text/javascript\" src=\"js/floating-window.js\"></script>
-<script type=\"text/javascript\" src=\"js/search.js\"></script>
-<script type=\"text/javascript\" src=\"js/results.js\"></script>
-<script type=\"text/javascript\" src=\"js/generatelayout.js\"></script>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript" src="js/floating-window.js"></script>
+<script type="text/javascript" src="js/search.js"></script>
+<script type="text/javascript" src="js/results.js"></script>
+<script type="text/javascript" src="js/generatelayout.js"></script>
 </head>";
 <?php
 echo "<body>";
