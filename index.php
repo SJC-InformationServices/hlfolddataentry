@@ -98,7 +98,7 @@ echo "<body><div id=\"body\">
       </td>
       
       <td width=\"250\">
-      Welcome if you don't have permissions to login please ask your supervisor or email <a href=\"mailto:lago@stjosephcontent.com\">lago@stjosephcontent.com</a>
+      Welcome if you don't have permissions to login please ask your supervisor
       </td>
       
       </tr>

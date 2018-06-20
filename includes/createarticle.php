@@ -56,7 +56,7 @@ else
 $mediaimportkey = $row[0];
 $mediatemplate = $row[1];
 }
-
+/*
 //*********fudging in the element layout for now until new dropdown list is approved 20110207 ****************
 if($mediatemplate == 'Highland 9x11.125' )
 {
@@ -122,7 +122,7 @@ elseif($elementlayout == 'pricelb feature')
 {$elementlayout = 'Feature_LB_RNP';
 }
 }
-
+*/
 $user = $_REQUEST['user'];
 $offerid = escape_data($mediaimportkey.str_pad($page, 4, "0", STR_PAD_LEFT).str_pad($position, 4, "0", STR_PAD_LEFT));
 $flasharticle = 1;

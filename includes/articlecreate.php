@@ -64,7 +64,7 @@ echo "</td><tr>
 <td ></td><td></td><td></td><td></td><td><input  name=\"articlename\" id=\"articlename\"  disabled value=\"\" </td><td></td><td></td><td></td><td>Delete</td><td><input  name=\"deletearticle\" type=\"checkbox\" onclick=submitarticles()></td><td>select art</td>";
 
 $query = "SELECT hlconstantvalue FROM $hlconstantstable WHERE hlconstants = 'artselect'";
-$result = mysqli_query($mysqliconnect,$query);
+$result = mysqli_query($mysqliconnect, $query);
 echo "<td><select name=\"artselection\"> <option value = \"\" selected=\"\">";
 while($hlartselect = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
