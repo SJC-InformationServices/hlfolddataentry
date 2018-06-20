@@ -38,7 +38,7 @@ $artselection = escape_data($_REQUEST['artselection']);
 $deletearticle = $_REQUEST['deletearticle'];
 
 $maxid2 = mysqli_query($mysqliconnect,"SELECT MAX(`id`) AS ID FROM $stackertable ");
-$maxidarray2 = mysqli_fetch_array($maxid2, mysqli_BOTH);
+$maxidarray2 = mysqli_fetch_array($maxid2, MYSQLI_BOTH);
 $maxidint2 = $maxidarray2['ID'] + 1;
 $searsdatamicroseconds2 = $date.$maxidint2;
 
