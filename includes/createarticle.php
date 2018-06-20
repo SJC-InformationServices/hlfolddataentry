@@ -45,7 +45,7 @@ $searsdatamicroseconds2 = $date.$maxidint2;
 //* ***** fetching the mediaimportkey for the media from hlmediacontrol
 $query = "SELECT mediaimportkey, mediatemplate FROM $mediacontrol WHERE media = '$media'";
 $results = mysqli_query($mysqliconnect,$query);
-$row = mysqli_fetch_array($results, mysqli_NUM);
+$row = mysqli_fetch_array($results, MYSQLI_NUM);
 if (!$results)
 { 
  $error = mysqli_error($mysqliconnect);
@@ -133,7 +133,7 @@ $flasharticle = 1;
 $existquery = "select * from $stackertable where media='$media' and page='$page' and position='$position' and articlenumber = '$articlenumber' 
 AND $stackermaxfield IN (SELECT MAX($stackermaxfield) FROM $stackertable WHERE media = '$media' AND page = '$page' AND articlenumber = '$articlenumber' AND position = '$position' GROUP BY articlenumber)";  //removed exportedtolago=0 requirement
 $existresults = mysqli_query($mysqliconnect,$existquery);
-$existnumnotexported = mysqli_num_rows($existresults);    //this is if the article exists > 0 
+$existnumnotexported = MYSQLI_NUM_rows($existresults);    //this is if the article exists > 0 
 
 while($lagorecord = mysqli_fetch_array($existresults, MYSQLI_ASSOC))
 {
@@ -155,7 +155,7 @@ $articlename = escape_data($artname);
 //$existqueryexported = "select * from $stackertable where media='$media' and page='$page' and position='$position' and articlenumber = '$articlenumber' and exportedtolago = 1";
 $existqueryexported = "select * from $stackertable where media='$media' and page='$page' and position='$position' and articlenumber = '$articlenumber' ";   // test if the article exists
 $existresultsexported = mysqli_query($mysqliconnect,$existqueryexported);
-$existnumexported = mysqli_num_rows($existresultsexported);       //will be greater than 0 if record exists but has been exported
+$existnumexported = MYSQLI_NUM_rows($existresultsexported);       //will be greater than 0 if record exists but has been exported
 
 while($lagorecord2 = mysqli_fetch_array($existresultsexported, MYSQLI_ASSOC))
 {
