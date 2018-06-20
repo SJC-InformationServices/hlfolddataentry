@@ -15,20 +15,20 @@ if (isset($_REQUEST['articlenumber'])) {
   
   //adding this for change from offer to article no in final dataarray.
 //  $artnamefromscreen   = $_GET['textlines'];
-  $artname = $_GET['articlename'];
-	$price     = $_GET['price'];
-  $pricelb   = $_GET['pricelb'];
-  $pricekg   = $_GET['pricekg'];
-  $elementlayoutget   = $_GET['elementlayout'];
+  $artname = $isset($_GET['articlename'])?$_GET['articlename']:null;
+	$price     = isset($_GET['price'])?$_GET['price']:null;
+  $pricelb   = isset($_GET['pricelb'])?$_GET['pricelb']:null;
+  $pricekg   = isset($_GET['pricekg'])?$_GET['pricekg']:null;
+  $elementlayoutget   = isset($_GET['elementlayout'])?$_GET['elementlayoutget']:null;
   $elementlayout = trim($elementlayoutget);
-	$textlines = $_GET['textlines'];
- 	$unitofsale      = $_GET['unitofsale'];
-	$measure      = $_GET['measure'];
- 	$instructions      = $_GET['instructions'];
-	$graphicslogo      = $_GET['logo'];
-	$category      = $_GET['category'];
-	$artselection = $GET['artselection'];
-	$deletearticle = $GET['deletearticle'];
+	$textlines = isset($_GET['textlines'])?$_GET['textlines']:null;
+ 	$unitofsale      = isset($_GET['unitofsale'])?$_GET['unitofsale']:null;
+	$measure      = isset($_GET['measure'])?$_GET['measure']:null;
+ 	$instructions      = isset($_GET['instructions'])?$_GET['instructions']:null;
+	$graphicslogo      = isset($_GET['logo'])?$_GET['logo']:null;
+	$category      = isset($_GET['category'])?$_GET['category']:null;
+	$artselection = isset($_GET['artselection'])?$_GET['artselection']:null;
+	$deletearticle = isset($_GET['deletearticle'])?$_GET['deletearchivel']:null;
 
 $checkexistsquery = "SELECT * FROM $stackertable WHERE articlenumber = '$artnum' AND media = '$media' 
 and page = '$page' and position = '$position'";
