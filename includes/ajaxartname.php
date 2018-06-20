@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['id']) )
 {
-header('content-type: text/html; charset=utf-8'); 
+header('content-type: application/json; charset=utf-8'); 
 error_reporting(-1);
 include 'serverconfig.php';
 
