@@ -48,7 +48,7 @@ include "includes//serverconfig.php";
 <script type="text/javascript" src="js/search.js"></script>
 <script type="text/javascript" src="js/results.js"></script>
 <script type="text/javascript" src="js/generatelayout.js"></script>
-</head>";
+</head>
 <?php
 echo "<body>";
 echo "<div class=\"welcome\"><a href=\"index.php\">Logout</a>  $user HLF <b>$selectedmedia  Pg. $selectedpage       --- $today</b></div>";
