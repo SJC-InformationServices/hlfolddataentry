@@ -33,5 +33,12 @@
         "pwd": "5jcAdmin!",
         "port": "3306",
         "db": "hlf"
+    },
+    "hlfdataentryprod":{
+        "server":"sjc-archive-prod.cluster-cpi3jpipzm32.us-east-1.rds.amazonaws.com",
+        "uid":"hlfStjosephContent",
+        "pwd":"hlf@15BentonRoad!",
+        "port":"3306",
+        "db":"hlf"
     }
 }
