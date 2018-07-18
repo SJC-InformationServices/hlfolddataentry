@@ -1,12 +1,12 @@
 branch-defaults:
   master:
-    environment: sjchlfold
+    environment: highlandfarmsdata
 environment-defaults:
   sjcarchiveadmin:
     branch: null
     repository: null
 global:
-  application_name: SJC_Archive
+  application_name: highlandfarmsdataentry
   default_ec2_keyname: sjc_archive_eb
   default_platform: arn:aws:elasticbeanstalk:us-east-1::platform/PHP 7.1 running on
     64bit Amazon Linux/2.7.0
