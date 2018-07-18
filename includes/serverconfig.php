@@ -1,6 +1,6 @@
 <?php
 $dbfile = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/archivedb.json"),true);
-$dbcfg = $dbfile['hlfOldDev'];
+$dbcfg = $dbfile['hlfdataentryprod'];
 //print_r($dbcfg);
 $mysqliconnect = mysqli_connect(
 	$dbcfg['server'], 
