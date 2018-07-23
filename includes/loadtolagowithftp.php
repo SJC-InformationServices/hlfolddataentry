@@ -13,8 +13,8 @@ exit;
 else
 {
 $sqlmedia = "Select Distinct(media) from $stackertable where markedforexport = '1' and exportedtolago = '0'";
-$mediaresults = mysql_query($sqlmedia);
-while($media = mysql_fetch_array($mediaresults))
+$mediaresults = mysqli_query($mysqliconnect, $sqlmedia);
+while($media = mysqli_fetch_array($mediaresults))
 {
 
 foreach($media as $loadmedia)
@@ -22,9 +22,9 @@ foreach($media as $loadmedia)
 //echo " this is the media $media and this is loadmedia $loadmedia";
 // fetch out the media template from hlmediacontrol
 $query= "SELECT * FROM $mediacontrol WHERE media = '$loadmedia'";
-$results = mysql_query($query);
+$results = mysqli_query($mysqliconnect, $query);
 //echo "results query = $results";
-$row = mysql_fetch_row($results);
+$row = mysqli_fetch_row($results);
 if(!$results)
 {
 //echo "<br> Failed to get media template<br>";
@@ -35,7 +35,7 @@ $mediatemplate = $row[6];
 }
 
 $sqlelements = "Select * from $stackertable where markedforexport = 1 and exportedtolago = 0 and media = '$loadmedia' and stackerfield in (select max(stackerfield) from $stackertable where markedforexport = 1 and exportedtolago = 0 and media = '$loadmedia' group by offerid, articlenumber) group by offerid, articlenumber order by deletearticle asc, media, page, position, articlenumber";
-$sqlresults = mysql_query($sqlelements);
+$sqlresults = mysqli_query($mysqliconnect, $sqlelements);
 if(!$sqlresults)
 {
 //echo "<br>Failed to Get Load Results<br>$sqlelements";
@@ -46,7 +46,7 @@ else
 //echo "<br>Media being loaded  $loadmedia<hr>";
 $x=0;
 
-while($elementresults = mysql_fetch_array($sqlresults))
+while($elementresults = mysqli_fetch_array($sqlresults))
 {
 
 //if($elementresults['articlenumber'] > 0)
@@ -81,11 +81,11 @@ fclose($file);
 $date = date('Y-m-d H:i');
 $updatestatment = "update $stackertable set exportedtolago = 1, loadtolagodate = '$date' where media='$loadmedia' and articlenumber='".escape_data($elementresults['articlenumber'])."' and offerid='".$elementresults['offerid']."'";
 //echo "$updatestatment<br>";
-$updateresults = mysql_query($updatestatment);
+$updateresults = mysqli_query($mysqliconnect, $updatestatment);
 if(!$updateresults)
 {
 $newdate= date('Ymd');
-$error = mysql_error($mysqlconnect);
+$error = mysqli_error($mysqlconnect);
 $log = fopen("..//logs//loadfailedlog-$newdate.txt", 'ab');
 fwrite($log, "$updatestatment\n$error\n-------------------------------------------------\n");
 fclose($log);

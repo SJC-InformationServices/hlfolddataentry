@@ -16,6 +16,7 @@ if (!$mysqlidb)
 {
 	die('mysqli_db fail: ' . mysqli_error());
 }
+@mysqli_set_charset($mysqliconnect,"utf8");
 $hlusertable = "hlusertable";
 $stackertable = "hldata";
 $stackertable2 = "hldata";
