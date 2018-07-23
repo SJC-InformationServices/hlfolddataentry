@@ -1,5 +1,5 @@
 <?php
-$dbfile = json_decode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/archivedb.json"),true);
+$dbfile = json_decode(file_get_contents("/storage/www/hlf/archivedb.json"), true);
 $dbcfg = $dbfile['hlfdataentryprod'];
 //print_r($dbcfg);
 $mysqliconnect = mysqli_connect(
@@ -16,7 +16,7 @@ if (!$mysqlidb)
 {
 	die('mysqli_db fail: ' . mysqli_error());
 }
-@mysqli_set_charset($mysqliconnect,"utf8");
+@mysqli_set_charset($mysqliconnect, "utf8");
 $hlusertable = "hlusertable";
 $stackertable = "hldata";
 $stackertable2 = "hldata";
@@ -39,7 +39,6 @@ $lagostackermaxfield = "id";
 $hlconstantstable = "hlconstants";
 $layouttable = "hltemplates";
 $layouttable2 = "hltemplates2";
-
 
 // Create a function for escaping the data.
 function escape_data ($data) {
