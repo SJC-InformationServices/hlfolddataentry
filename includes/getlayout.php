@@ -27,7 +27,7 @@ $layout = "Newspaper_Jewish";
 }
 elseif(stristr($template, "Newspaper"))
 {
-$layout = "Newspaper_Russian";
+$layout = "frontcover";
 }
 elseif($page == 8 && $template == 'Highland')
 {
