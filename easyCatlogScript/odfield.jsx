@@ -19,8 +19,8 @@ switch(layout){
     case 'FrontCoverLB':
     layoutAry.push('frontcover');
     break;
-var obj = layoutAry.join(" ").replace("  "," ");
 }
+var obj = layoutAry.join(" ").replace("  "," ");
 }catch(e){
     var obj = "Script Error:"+ e.message;
 }
