@@ -1,6 +1,7 @@
 
 var layoutAry = [];
 var layout = myRecord['elementlayout'];
+var measure = myRecord['measure'];
 try{
 switch(layout){
     case '1Box':
@@ -43,7 +44,7 @@ var orgPriceLb = myRecord['pricelb'];
 var price = orgPrice;
 var enddigit = "US";
 
-if(orgPriceLb != "00¢"){
+if(orgPriceLb != "00¢" && !/\d+g|\d+ g/.test(measure)){
     price = orgPriceLb;
     enddigit = "LB"
 }
